@@ -301,6 +301,26 @@ button{transition:filter .15s ease}
 .pas-panel{margin-top:18px}.pas-tools{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:10px 0}.pas-tools input,.pas-form input,.pas-form select,.pas-form textarea{padding:8px;border:1px solid #b8c4d4;border-radius:6px;min-width:0;max-width:100%;box-sizing:border-box}.pas-form{display:grid;grid-template-columns:repeat(4,minmax(120px,1fr));gap:8px;padding:12px;background:#f7f9fc;border:1px solid #d4dce7;border-radius:8px;margin:12px 0}.pas-form .wide{grid-column:span 2}.pas-table-wrap{overflow-x:auto;margin:12px 0}.pas-table{width:100%;border-collapse:collapse;min-width:900px}.pas-table th{background:#315a92;color:#fff}.pas-table th,.pas-table td{border:1px solid #667b99;padding:6px 8px;text-align:center}.pas-table tr:nth-child(even){background:#f1f4f8}.pas-table tr.pas-done{background:#fff2b8}.pas-table .pas-actions{white-space:nowrap}.pas-table button{padding:5px 8px;margin:2px}.pas-status{font-size:13px;color:#43536a}.pas-lock{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.pas-badge{display:inline-block;border-radius:12px;padding:3px 8px;background:#e9eef5;font-weight:700}.pas-error{color:#a52626}.pas-hidden{display:none!important}@media(max-width:760px){.pas-form{grid-template-columns:repeat(2,minmax(0,1fr))}.pas-form .wide{grid-column:span 2}}
 
 </style>
+<style>
+@media print {
+  @page { size: A4 landscape; margin: 6mm; }
+  body * { visibility: hidden !important; }
+  main, main * { visibility: visible !important; }
+  header, nav, footer, .topbar, .toolbar, .status-bar, #status, #printBtn, #saveBtn, #csvBtn { display:none !important; }
+  main { display:grid !important; grid-template-columns:minmax(0,1fr) 48mm !important; grid-template-rows:auto auto !important; align-items:start !important; column-gap:2mm !important; row-gap:2mm !important; }
+  main > section.panel:has(#tankTables) { grid-column:1 !important; grid-row:1 !important; height:auto !important; align-self:start !important; }
+  main > .summary-grid { grid-column:2 !important; grid-row:1 / span 2 !important; width:48mm !important; max-width:48mm !important; }
+  main > section#pasPanel { display:block !important; grid-column:1 !important; grid-row:2 !important; width:100% !important; min-width:0 !important; margin:0 !important; padding:0 !important; border:0 !important; box-shadow:none !important; break-inside:avoid !important; page-break-inside:avoid !important; }
+  #pasPanel > h2, #pasPanel .pas-tools, #pasPanel #pasEditor, #pasPanel #pasInfo, #pasPanel .pas-edit-col, #pasPanel .pas-actions, #pasPanel button, #pasPanel input, #pasPanel select, #pasPanel textarea, #pasPanel .pasConnection, #pasPanel small { display:none !important; }
+  #pasPanel h3 { display:block !important; margin:1mm 0 0.5mm !important; padding:1mm 1.5mm !important; font-size:7pt !important; line-height:1.1 !important; color:#111 !important; background:#e6e6e6 !important; border:0.5pt solid #222 !important; }
+  #pasPanel .pas-table-wrap { overflow:visible !important; margin:0 0 1.5mm !important; width:100% !important; }
+  #pasPanel .pas-table { width:100% !important; min-width:0 !important; table-layout:fixed !important; border-collapse:collapse !important; }
+  #pasPanel .pas-table th, #pasPanel .pas-table td { font-size:5.5pt !important; line-height:1.05 !important; padding:1px 2px !important; height:auto !important; border:0.5pt solid #333 !important; overflow-wrap:anywhere !important; }
+  #pasPanel .pas-table th { background:#315a92 !important; color:#fff !important; -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; }
+  #pasPanel .pas-table th:last-child, #pasPanel .pas-table td:last-child { display:none !important; }
+  #pasPanel .pas-table tr.pas-done { background:#fff2b8 !important; -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; }
+}
+</style>
 </head>
 <body>
 <header>
@@ -435,19 +455,3 @@ init();
 </script>
 </body>
 </html>
-
-/* IMPRESION: las tablas PAS van debajo de las piletas, sin controles de edición */
-@media print {
-  main { display:grid !important; grid-template-columns:minmax(0,1fr) 48mm !important; grid-template-rows:auto auto !important; align-items:start !important; column-gap:2mm !important; row-gap:2mm !important; }
-  main > section.panel:has(#tankTables) { grid-column:1 !important; grid-row:1 !important; height:auto !important; align-self:start !important; }
-  main > .summary-grid { grid-column:2 !important; grid-row:1 / span 2 !important; width:48mm !important; max-width:48mm !important; }
-  main > section#pasPanel { display:block !important; grid-column:1 !important; grid-row:2 !important; width:100% !important; min-width:0 !important; margin:0 !important; padding:0 !important; border:0 !important; box-shadow:none !important; break-inside:avoid !important; page-break-inside:avoid !important; }
-  #pasPanel > h2, #pasPanel .pas-tools, #pasPanel #pasEditor, #pasPanel #pasInfo, #pasPanel .pas-edit-col, #pasPanel .pas-actions, #pasPanel button, #pasPanel input, #pasPanel select, #pasPanel textarea { display:none !important; }
-  #pasPanel h3 { display:block !important; margin:1mm 0 0.5mm !important; padding:1mm 1.5mm !important; font-size:7pt !important; line-height:1.1 !important; color:#111 !important; background:#e6e6e6 !important; border:0.5pt solid #222 !important; }
-  #pasPanel .pas-table-wrap { overflow:visible !important; margin:0 0 1.5mm !important; width:100% !important; }
-  #pasPanel .pas-table { width:100% !important; min-width:0 !important; table-layout:fixed !important; border-collapse:collapse !important; }
-  #pasPanel .pas-table th, #pasPanel .pas-table td { font-size:5.5pt !important; line-height:1.05 !important; padding:1px 2px !important; height:auto !important; border:0.5pt solid #333 !important; overflow-wrap:anywhere !important; }
-  #pasPanel .pas-table th { background:#315a92 !important; color:#fff !important; -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; }
-  #pasPanel .pas-table th:last-child, #pasPanel .pas-table td:last-child { display:none !important; }
-  #pasPanel .pas-table tr.pas-done { background:#fff2b8 !important; -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; }
-}
