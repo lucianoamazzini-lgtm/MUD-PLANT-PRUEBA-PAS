@@ -402,7 +402,7 @@ $('saveBtn').addEventListener('click',async()=>{clearTimeout(saveTimer);saveTime
 [0,1,2].forEach(i=>$('silo'+i).addEventListener('input',()=>{renderTotals();saveLocal();hasUnsavedEdits=true;queueRemoteSave()}));['generalObs'].forEach(id=>$(id).addEventListener('input',saveLocal));
 
 // PAS compartidos. El PIN de esta versión bloquea la interfaz; la seguridad real requiere autenticar también las escrituras en el servidor.
-const PAS_PIN='BARABLOCK';
+const PAS_PIN='2424';
 let pasUnlocked=false,pasRows=[],pasBusy=false;
 function pasEsc(v){return esc(v)}
 function pasSetMsg(msg,bad=false){$('pasPinMsg').textContent=msg;$('pasPinMsg').classList.toggle('pas-error',bad)}
